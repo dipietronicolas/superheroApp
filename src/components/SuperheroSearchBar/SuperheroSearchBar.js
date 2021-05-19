@@ -19,20 +19,32 @@ export const SuperheroSearchBar = () => {
   // Funcion que maneja el submit del form
   const handleSearchForm = (e) => {
     e.preventDefault();
-    
     fetch(getURL(e.target.id.value))
       .then(res => res.json())
-      .then(data => setSearchResult(data.results))
+      .then(data => {
+        console.log(data.results);
+        setSearchResult(data.results);
+      })
       .catch(e => console.log(e));
+  }
+
+  // Reinicio los resultados cuando el input esta vacio.
+  const handleInput = (e) => {
+    e.target.value.length === 0 && setSearchResult([]);
   }
 
   return (
     <div className="jumbotron form-container">
-      <form className="form-inline col-12 col-sm-10 col-lg-4 mx-auto p-0 d-flex" onSubmit={handleSearchForm}>
-        <div className="form-group d-flex mx-auto">
-          <input className="form-control" type="text" name="id" autoFocus></input>
-          <button className="btn btn-primary" type="submit">Search</button>
-        </div>
+      <form className="search-form" onSubmit={handleSearchForm}>
+          <input 
+            className="form-control col-9" 
+            type="text" 
+            name="id" 
+            onChange={handleInput}
+            autoFocus />
+          <button 
+            className="btn btn-success" 
+            type="submit">Search</button>
       </form>
       {
         searchResult

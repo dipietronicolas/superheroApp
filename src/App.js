@@ -1,4 +1,6 @@
 import { SuperheroSearchBar } from './components/SuperheroSearchBar/SuperheroSearchBar';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { SuperheroSheet } from './components/SuperheroSheet/SuperheroSheet';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -9,9 +11,18 @@ import './App.css';
 function App() {
 
   return (
-    <div className="App mx-auto">
-      <SuperheroSearchBar />
-    </div>
+    <BrowserRouter>
+      <div className="App mx-auto">
+        <Switch>
+          <Route path="/" exact>
+            <SuperheroSearchBar />
+          </Route>
+          <Route path="/superhero/:id" exact>
+            <SuperheroSheet />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
