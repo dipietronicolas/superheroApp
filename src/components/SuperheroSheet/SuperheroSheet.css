@@ -9,8 +9,7 @@
 
 .SuperheroSheet-hero {
   width: 50rem;
-  height: 35rem;
-  margin-top: 2rem;
+  height: 40rem;
   background: rgba(200, 200, 200, 0.9);
   display: flex;
   justify-content: space-around;
@@ -29,4 +28,13 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+}
+
+@media screen and (max-width:600px){
+  .SuperheroSheet-hero {
+    padding-top: 1rem;
+    flex-direction: column;
+    height: fit-content;
+    width: 90vw;
+  }
 }

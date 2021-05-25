@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { SuperheroContext } from '../../context/SuperheroContext';
+import { Link } from 'react-router-dom';
 import './SuperheroCard.css';
 
 export const SuperheroCard = ({ hero }) => {
@@ -24,13 +25,16 @@ export const SuperheroCard = ({ hero }) => {
         alt={`${hero.name}-pic`} />
       <p>Powerstats:</p>
       <ul>
-        <li>Combat: <b>{hero.powerstats.combat}</b></li>
-        <li>Durability:<b>{hero.powerstats.durability}</b></li>
-        <li>Intelligence: <b>{hero.powerstats.intelligence}</b></li>
-        <li>Power: <b>{hero.powerstats.power}</b></li>
-        <li>Speed: <b>{hero.powerstats.speed}</b></li>
-        <li>Strength: <b>{hero.powerstats.strength}</b></li>
+        <li>Combat: <b>{hero.powerstats.combat === 'null' ? 'No hay datos' : hero.powerstats.combat}</b></li>
+        <li>Durability:<b>{hero.powerstats.durability === 'null' ? 'No hay datos' : hero.powerstats.durability}</b></li>
+        <li>Intelligence: <b>{hero.powerstats.intelligence === 'null' ? 'No hay datos' : hero.powerstats.intelligence}</b></li>
+        <li>Power: <b>{hero.powerstats.power === 'null' ? 'No hay datos' : hero.powerstats.power}</b></li>
+        <li>Speed: <b>{hero.powerstats.speed === 'null' ? 'No hay datos' : hero.powerstats.speed}</b></li>
+        <li>Strength: <b>{hero.powerstats.strength === 'null' ? 'No hay datos' : hero.powerstats.strength}</b></li>
       </ul>
+      <Link 
+        to={`/superhero/${hero.id}`}
+        className="btn btn-success">Ver detalles</Link>
     </div>
   )
 }

@@ -16,7 +16,7 @@ export const SuperheroSheet = () => {
   let { id } = useParams();
 
   // Consumo mi contexto
-  const { getById, addToTeam } = useContext(SuperheroContext);
+  const { getById, addToTeam, isInTeam } = useContext(SuperheroContext);
 
   // Traigo la data de mi superheroe
   useEffect(() => {
@@ -44,11 +44,11 @@ export const SuperheroSheet = () => {
         {
           superhero && (
             <>
-              <img 
+              <img
                 className="SuperheroSheet-img"
-                src={superhero.image.url} 
+                src={superhero.image.url}
                 alt={`${superhero.name}-pic`} />
-              <div className="SuperheroSheet-profile">
+              <div className="SuperheroSheet-profile col-10 col-sm-7 col-lg-6">
                 <h1>{superhero.name}</h1>
                 <p>Weight: {superhero.appearance.weight[1]}</p>
                 <p>Height: {superhero.appearance.height[1]}</p>
@@ -66,9 +66,19 @@ export const SuperheroSheet = () => {
                   <li>Strength: <b>{superhero.powerstats.strength}</b></li>
                 </ul>
                 <div className="w-100 d-flex justify-content-between">
-                  <button
-                    className="btn btn-success"
-                    onClick={handleAddButton}>Add to the {superhero.biography.alignment} team!</button>
+                  {
+                    isInTeam(superhero) 
+                      ? (
+                        <button
+                          className="btn btn-success"
+                          disabled>Already in team</button>
+                      )
+                      : (
+                        <button
+                          className="btn btn-success"
+                          onClick={handleAddButton}>Add to the {superhero.biography.alignment} team!</button>
+                      )
+                  }
                   <Link
                     className="btn btn-danger"
                     to='/'>Return to home page</Link>

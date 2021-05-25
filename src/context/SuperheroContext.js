@@ -9,6 +9,23 @@ export const SuperheroProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [goodTeam, setGoodTeam] = useState([]);
   const [evilTeam, setEvilTeam] = useState([]);
+  const [teamStats, setTeamStats] = useState([]);
+
+  // Funcion que settea los stats totales del equipo
+  useEffect(() => {
+    let newStats = [0,0,0,0,0,0], index;
+    for (const hero of goodTeam.concat(evilTeam)) {
+      index = 0;
+      for (const key in hero.powerstats) {
+        newStats[index] += Number(hero.powerstats[key] === 'null' ? '0' : hero.powerstats[key])
+        console.log(`${key}: ${hero.powerstats[key]}`);
+        index++;
+      }
+    }
+    console.log(newStats);
+    setTeamStats(newStats);
+  }, [goodTeam, evilTeam])
+
 
   // Funcion que crea la URL a fetchear
   useEffect(() => {
@@ -21,8 +38,8 @@ export const SuperheroProvider = ({ children }) => {
   const getByName = (superheroName) => {
     fetch(URL.concat('/search/', superheroName))
       .then(res => res.json())
-      .then(data => {
-        setSearchResults(data.results);
+      .then(data => { 
+        data.results ? setSearchResults(data.results) : setSearchResults([]);
       })
       .catch(e => console.log(e));
   }
@@ -37,12 +54,13 @@ export const SuperheroProvider = ({ children }) => {
 
   // Funcion que agrega un heroe a nuestro equipo
   const addToTeam = (superhero) => {
-    if (superhero.biography.alignment === 'good') {
+    if (superhero.biography.alignment === 'good' && goodTeam.length < 3) {
+      console.log(goodTeam.length);
       setGoodTeam([
         ...goodTeam,
         superhero
       ])
-    } else {
+    } else if (superhero.biography.alignment === 'bad' && evilTeam.length < 3){
       setEvilTeam([
         ...evilTeam,
         superhero
@@ -67,16 +85,27 @@ export const SuperheroProvider = ({ children }) => {
     }
   }
 
+  // Funcion que verifique si el heroe esta en la lista
+  const isInTeam = (hero) => {
+    if(hero){
+      return Boolean(goodTeam.concat(evilTeam).find(e => e.id === hero.id));
+    } else {
+      return false;
+    }
+  }
+
   return (
     <SuperheroContext.Provider value={{
       searchResults,
       goodTeam,
       evilTeam,
+      teamStats,
       setSearchResults,
       getByName,
       getById,
       addToTeam,
-      removeFromTeam
+      removeFromTeam,
+      isInTeam
     }}>
       { children}
     </SuperheroContext.Provider>

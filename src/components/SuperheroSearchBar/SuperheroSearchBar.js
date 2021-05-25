@@ -26,7 +26,9 @@ export const SuperheroSearchBar = () => {
 
   return (
     <div className="form-container">
-      <img src={Title} alt='page title' />
+      <img 
+        className="col-12 col-sm-10 col-lg-8 col-xl-6"
+        src={Title} alt='page title' />
       <form className="search-form" onSubmit={handleSearchForm}>
           <input 
             className="form-control col-9" 

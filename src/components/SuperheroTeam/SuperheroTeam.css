@@ -1,7 +1,31 @@
 .SuperheroTeam {
-  min-height: fit-content;
-  padding: 1rem 4rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: rgba(200, 200, 200, 0.9);
+}
+
+.SuperheroTeam-cardContainer {
+  min-height: fit-content;
+  width: 100%;
+  padding: 1rem;
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.SuperheroTeam-stats {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.SuperheroTeam-stats li {
+  margin: 0 1.5rem 0 1.5rem;
+}
+
+@media screen and (max-width:768px){
+  .SuperheroTeam-cardContainer {
+    justify-content: center;
+  }
 }
