@@ -1,5 +1,10 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
 .form-result{
-  max-height: 20rem;
+  max-height: 12rem;
   width: 20rem;
 }
 

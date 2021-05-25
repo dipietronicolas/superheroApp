@@ -1,0 +1,31 @@
+.SuperheroCard {
+  position: relative;
+  min-width: 15rem;
+  padding: 1rem;
+  margin: 0rem 1rem 0rem 1rem;
+  border: 5px solid black;
+}
+
+.good {
+  background-color: rgba(46, 139, 87, 0.6);
+}
+
+.evil {
+  background-color: rgba(178, 34, 34, 0.6);
+}
+
+.SuperheroCard-closeButton {
+  position: absolute;
+  top:0;
+  right: 0;
+  font-size: 1.5rem;
+}
+
+.SuperheroCard ul {
+  list-style: none;
+}
+
+.SuperheroCard-picture {
+  height: 15rem;
+  width: auto;
+}

@@ -1,40 +1,32 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { SuperheroList } from '../SuperheroList/SuperheroList';
+import { SuperheroContext } from '../../context/SuperheroContext';
+import Title from '../../assets/superheroapp01.svg';
 import './SuperheroSearchBar.css';
 
 export const SuperheroSearchBar = () => {
 
-  // Datos recuperados del fetch a la superheroAPI
-  const [searchResult, setSearchResult] = useState([]);
+  // Consumo mi context
+  const { getByName, searchResults, setSearchResults } = useContext(SuperheroContext);
 
-  // Funcion que crea la URL a fetchear
-  const getURL = ( superheroName ) => {
-    let URL = '';
-    process.env.NODE_ENV === 'development'
-      ? URL = process.env.REACT_APP_DEVELOPMENT_URL.concat('/search/', superheroName)
-      : URL = process.env.REACT_APP_PRODUCTION_URL.concat('/search/', superheroName)
-    return URL;
-  }
+  useEffect(() => {
+    setSearchResults([]);
+  }, [setSearchResults])
 
   // Funcion que maneja el submit del form
   const handleSearchForm = (e) => {
     e.preventDefault();
-    fetch(getURL(e.target.id.value))
-      .then(res => res.json())
-      .then(data => {
-        console.log(data.results);
-        setSearchResult(data.results);
-      })
-      .catch(e => console.log(e));
+    getByName(e.target.id.value);
   }
 
   // Reinicio los resultados cuando el input esta vacio.
   const handleInput = (e) => {
-    e.target.value.length === 0 && setSearchResult([]);
+    e.target.value.length === 0 && setSearchResults([]);
   }
 
   return (
-    <div className="jumbotron form-container">
+    <div className="form-container">
+      <img src={Title} alt='page title' />
       <form className="search-form" onSubmit={handleSearchForm}>
           <input 
             className="form-control col-9" 
@@ -47,8 +39,8 @@ export const SuperheroSearchBar = () => {
             type="submit">Search</button>
       </form>
       {
-        searchResult
-        && <SuperheroList superheroList={searchResult} />
+        searchResults.length > 0
+        && <SuperheroList superheroList={searchResults} />
       }
     </div>
   )

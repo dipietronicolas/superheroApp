@@ -1,0 +1,7 @@
+.SuperheroTeam {
+  min-height: fit-content;
+  padding: 1rem 4rem 1rem 4rem;
+  background: rgba(200, 200, 200, 0.9);
+  display: flex;
+  justify-content: flex-start;
+}
