@@ -5,11 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 
   const [isLogged, setIsLogged] = useState(false);
-
-  useEffect(() => {
-    
-  }, [])
-
+  
   const getLog = () => {
     if(localStorage.getItem('token')){
       setIsLogged(true);
