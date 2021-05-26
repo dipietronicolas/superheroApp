@@ -16,7 +16,7 @@ export const SuperheroSheet = () => {
   let { id } = useParams();
 
   // Consumo mi contexto
-  const { getById, addToTeam, isInTeam } = useContext(SuperheroContext);
+  const { getById, addToTeam, isInTeam, isTeamFull } = useContext(SuperheroContext);
 
   // Traigo la data de mi superheroe
   useEffect(() => {
@@ -67,18 +67,21 @@ export const SuperheroSheet = () => {
                 </ul>
                 <div className="w-100 d-flex justify-content-between">
                   {
-                    isInTeam(superhero) 
-                      ? (
-                        <button
+                    isTeamFull()
+                      ? <button
                           className="btn btn-success"
-                          disabled>Already in team</button>
-                      )
+                          disabled>Team is full</button>
                       : (
-                        <button
-                          className="btn btn-success"
-                          onClick={handleAddButton}>Add to the {superhero.biography.alignment} team!</button>
+                          isInTeam(superhero) 
+                            ? <button
+                              className="btn btn-success"
+                              disabled>Already in team</button>
+                            : <button
+                              className="btn btn-success"
+                              onClick={handleAddButton}>Add to the {superhero.biography.alignment} team!</button>
                       )
                   }
+                  
                   <Link
                     className="btn btn-danger"
                     to='/'>Return to home page</Link>

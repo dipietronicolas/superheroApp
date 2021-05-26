@@ -1,0 +1,15 @@
+.LoginForm {
+  padding: 1rem;
+  background: rgb(230, 230, 230);
+  height: 20rem;
+  width: 30rem;
+  
+}
+
+.LoginForm-form {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}

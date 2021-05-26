@@ -22,7 +22,6 @@ export const SuperheroProvider = ({ children }) => {
         index++;
       }
     }
-    console.log(newStats);
     setTeamStats(newStats);
   }, [goodTeam, evilTeam])
 
@@ -55,7 +54,6 @@ export const SuperheroProvider = ({ children }) => {
   // Funcion que agrega un heroe a nuestro equipo
   const addToTeam = (superhero) => {
     if (superhero.biography.alignment === 'good' && goodTeam.length < 3) {
-      console.log(goodTeam.length);
       setGoodTeam([
         ...goodTeam,
         superhero
@@ -94,6 +92,11 @@ export const SuperheroProvider = ({ children }) => {
     }
   }
 
+  // Funcion que devuelve true si el equipo esta lleno
+  const isTeamFull = () => {
+    return goodTeam.concat(evilTeam).length === 6 ? true : false;
+  }
+
   return (
     <SuperheroContext.Provider value={{
       searchResults,
@@ -105,7 +108,8 @@ export const SuperheroProvider = ({ children }) => {
       getById,
       addToTeam,
       removeFromTeam,
-      isInTeam
+      isInTeam,
+      isTeamFull
     }}>
       { children}
     </SuperheroContext.Provider>
