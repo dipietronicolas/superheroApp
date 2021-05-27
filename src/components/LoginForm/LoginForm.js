@@ -24,7 +24,7 @@ export const LoginForm = () => {
   // email: challenge@alkemy.org
   // password: react
   const getAuthToken = (email, password) => {
-    axios.post('http://challenge-react.alkemy.org/', {
+    axios.post('https://challenge-react.alkemy.org/', {
       email: email,
       password: password
     })
