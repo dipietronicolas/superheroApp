@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthContext';
 import { SuperheroProvider } from './context/SuperheroContext';
 // Estilos
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 

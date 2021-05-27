@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useState } from 'react'
 
 export const AuthContext = createContext();
 
@@ -14,10 +14,16 @@ export const AuthProvider = ({ children }) => {
     return false;
   }
 
+  const logout = () => {
+    localStorage.setItem('token', '');
+    setIsLogged(false);
+  }
+
   return (
     <AuthContext.Provider value={{
       isLogged,
-      getLog
+      getLog,
+      logout
     }}>
       { children }
     </AuthContext.Provider>

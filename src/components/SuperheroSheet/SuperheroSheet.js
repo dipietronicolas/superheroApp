@@ -1,7 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { SuperheroContext } from '../../context/SuperheroContext';
-import { useParams } from 'react-router-dom';
-import { useHistory, Link } from "react-router-dom";
+import { AuthContext } from '../../context/AuthContext';
+import { useHistory, Link, useParams } from "react-router-dom";
+
 import './SuperheroSheet.css';
 
 export const SuperheroSheet = () => {
@@ -17,6 +18,13 @@ export const SuperheroSheet = () => {
 
   // Consumo mi contexto
   const { getById, addToTeam, isInTeam, isTeamFull } = useContext(SuperheroContext);
+  const { isLogged } = useContext(AuthContext);
+
+  // Verifico si el usuario esta loggeado, de no ser asi, es redirigido
+  useEffect(() => {
+    !isLogged && history.push('/');
+    // eslint-disable-next-line
+  }, [])
 
   // Traigo la data de mi superheroe
   useEffect(() => {
