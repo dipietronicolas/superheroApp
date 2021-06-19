@@ -35,6 +35,7 @@ export const SuperheroProvider = ({ children }) => {
 
   // Funcion que busca por nombre, para SuperheroSearchBar
   const getByName = (superheroName) => {
+    console.log(URL.concat('/search/', superheroName));
     fetch(URL.concat('/search/', superheroName))
       .then(res => res.json())
       .then(data => { 

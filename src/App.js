@@ -2,7 +2,6 @@
 import { SuperheroSearchBar } from './components/SuperheroSearchBar/SuperheroSearchBar';
 import { SuperheroSheet } from './components/SuperheroSheet/SuperheroSheet';
 import { SuperheroTeam } from './components/SuperheroTeam/SuperheroTeam';
-import { LoginForm } from './components/LoginForm/LoginForm';
 // Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // Context
@@ -27,9 +26,6 @@ function App() {
           <div className="App mx-auto pt-5">
             <Switch>
               <Route path="/" exact>
-                <LoginForm />
-              </Route>
-              <Route path="/search">
                 <SuperheroSearchBar />
                 <SuperheroTeam />
               </Route>
