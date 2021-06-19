@@ -11,7 +11,6 @@ export const SuperheroSearchBar = () => {
 
   useEffect(() => {
     setSearchResults([]);
-    console.log(process.env);
   }, [setSearchResults])
 
   // Funcion que maneja el submit del form
