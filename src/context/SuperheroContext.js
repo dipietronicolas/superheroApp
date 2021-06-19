@@ -35,9 +35,10 @@ export const SuperheroProvider = ({ children }) => {
 
   // Funcion que busca por nombre, para SuperheroSearchBar
   const getByName = (superheroName) => {
+    console.log('Content-Type: application/x-www-form-urlencoded');
     fetch(URL.concat('/search/', superheroName), {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
