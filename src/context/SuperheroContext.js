@@ -35,7 +35,7 @@ export const SuperheroProvider = ({ children }) => {
 
   // Funcion que busca por nombre, para SuperheroSearchBar
   const getByName = (superheroName) => {
-    console.log('Content-Type: application/x-www-form-urlencoded');
+    console.log('Prueba', 'Content-Type: application/x-www-form-urlencoded');
     fetch(URL.concat('/search/', superheroName), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
