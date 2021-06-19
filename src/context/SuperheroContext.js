@@ -39,7 +39,8 @@ export const SuperheroProvider = ({ children }) => {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        "Access-Control-Allow-Headers": "X-Requested-With"
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       }
     })
